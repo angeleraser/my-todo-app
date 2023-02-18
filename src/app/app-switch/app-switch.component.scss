@@ -1,0 +1,37 @@
+.app-switch {
+  width: 52px;
+  height: 32px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  display: inline-block;
+  padding: 2.5px;
+  position: relative;
+
+  &__toggle {
+    transition: 0.3s all;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    height: calc(100% - 4.5px);
+    position: absolute;
+    top: 2.5px;
+    width: calc(58% - 2.5px);
+  }
+
+  &--enabled {
+    background-color: #34c759;
+
+    .app-switch__toggle {
+      left: calc(45% - 2.5px);
+    }
+  }
+
+  &--disabled {
+    background-color: lightgray;
+
+    .app-switch__toggle {
+      left: 2.5px;
+    }
+  }
+}

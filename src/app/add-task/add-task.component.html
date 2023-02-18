@@ -1,0 +1,28 @@
+<div [ngClass]="{ 'add-task--active': showModal }" class="add-task">
+  <div class="app-btn">
+    <app-button
+      (onclick)="handleToggleModal()"
+      [color]="'black'"
+      [rounded]="true"
+    >
+      <span class="material-symbols-outlined"> add </span>
+    </app-button>
+  </div>
+
+  <div class="add-task__container">
+    <div (click)="handleToggleModal()" class="add-task-overlay"></div>
+
+    <div class="add-task-content">
+      <div class="add-task__header">
+        <button (click)="handleToggleModal()">
+          <span class="material-symbols-outlined"> arrow_back </span>
+          Close
+        </button>
+
+        <h2>Task</h2>
+      </div>
+
+      <app-add-task-form></app-add-task-form>
+    </div>
+  </div>
+</div>

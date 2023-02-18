@@ -1,0 +1,24 @@
+.app-root {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  min-width: 375px;
+  min-height: 100vh;
+  max-width: 480px;
+  font-family: 'Montserrat', sans-serif;
+
+
+  .app-section {
+    height: 46vh;
+    min-height: 360px;
+    width: 100%;
+
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      height: 90%;
+      overflow-y: auto;
+    }
+  }
+}

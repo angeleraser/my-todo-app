@@ -1,0 +1,11 @@
+<button
+  [ngClass]="{
+    'app-switch--enabled': enabled,
+    'app-switch--disabled': !enabled
+  }"
+  type="button"
+  class="app-switch"
+  (click)="handleToggle()"
+>
+  <span class="app-switch__toggle"></span>
+</button>

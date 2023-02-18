@@ -1,0 +1,28 @@
+.app-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 4px 12px;
+  border-radius: 12px;
+  min-width: 46px;
+  min-height: 46px;
+  font-family: 'Montserrat', sans-serif;
+
+  &--is-rounded {
+    border-radius: 50% !important;
+  }
+
+  &--is-full-width {
+    width: 100% !important;
+  }
+
+  &--is-black {
+    background-color: #000;
+    color: #fff;
+  }
+
+  &--is-transparent {
+    color: #000;
+    background-color: transparent;
+  }
+}

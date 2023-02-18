@@ -1,0 +1,5 @@
+<button [type]="type" [ngClass]="classNames()" class="app-button" (click)="onclick.emit()">
+  <span class="app-button__content">
+    <ng-content></ng-content>
+  </span>
+</button>

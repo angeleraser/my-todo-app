@@ -1,0 +1,28 @@
+<article [ngClass]="{ 'task--completed': _completed }" class="task">
+  <div class="task__action">
+    <label *ngIf="!readonly; else showBullet" class="custom-checkbox">
+      <input
+        type="checkbox"
+        checked="checked"
+        [ngModel]="_completed"
+        (ngModelChange)="toggleCompleted($event)"
+      />
+      <span class="checkmark"></span>
+    </label>
+
+    <ng-template #showBullet>
+      <span class="task-list-bullet"></span>
+    </ng-template>
+  </div>
+
+  <div class="task__content">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+    <span>12:42 PM</span>
+  </div>
+
+  <button (click)="handleDelete()" class="task__delete-btn">
+    <span class="material-symbols-outlined"> delete </span>
+  </button>
+</article>

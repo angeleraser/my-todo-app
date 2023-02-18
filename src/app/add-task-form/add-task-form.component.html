@@ -1,0 +1,24 @@
+<app-section [sectionTitle]="'Add Task'">
+  <form autocomplete="off" (submit)="handleSubmit()" class="add-task-form">
+    <label class="add-task-form__field" for="name">
+      <h2>Name</h2>
+      <input type="text" name="name" id="name" [(ngModel)]="name" />
+    </label>
+
+    <label class="add-task-form__field" for="hour">
+      <h2>Hour</h2>
+      <input type="time" required name="hour" [(ngModel)]="time" />
+    </label>
+
+    <label class="add-task-form__field" for="today">
+      <h2>Today</h2>
+      <app-switch (onchange)="today = $event"></app-switch>
+    </label>
+
+    <app-button [type]="'submit'" [full-width]="true" [color]="'black'">
+      Done
+    </app-button>
+
+    <p>If you disable today, the task will be considered as tomorrow</p>
+  </form>
+</app-section>
