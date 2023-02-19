@@ -1,7 +1,9 @@
 interface Todo {
-	id: string;
-	completed: boolean;
-	label: string;
+  completed: boolean;
+  date: string;
+  id: string;
+  name: string;
+  time: string;
 }
 
 export type { Todo };

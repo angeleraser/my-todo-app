@@ -1,11 +1,17 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './app-button.component.html',
   styleUrls: ['./app-button.component.scss'],
 })
-export class AppButtonComponent{
+export class AppButtonComponent {
   @Input()
   public label?: string;
 
@@ -21,6 +27,9 @@ export class AppButtonComponent{
   @Input()
   public rounded?: boolean;
 
+  @Input()
+  public disabled?: boolean;
+
   @Output()
   public 'onclick' = new EventEmitter();
 
@@ -29,6 +38,7 @@ export class AppButtonComponent{
       [`app-button--is-${this.color}`]: !!this.color,
       'app-button--is-full-width': this['full-width'],
       'app-button--is-rounded': this.rounded,
+      'app-button--is-disabled': this.disabled,
     };
 
     return classes;

@@ -22,7 +22,7 @@
         <h2>Task</h2>
       </div>
 
-      <app-add-task-form></app-add-task-form>
+      <app-add-task-form (onsubmit)="handleSubmit($event)"></app-add-task-form>
     </div>
   </div>
 </div>

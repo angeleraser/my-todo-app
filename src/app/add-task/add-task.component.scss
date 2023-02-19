@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding: 24px;
   position: fixed;
   bottom: 0;
   background-color: #fafafa;
@@ -74,13 +73,20 @@
       background-color: #fafafa;
       border-radius: 20px 20px 0 0;
       bottom: -100%;
-      left: 0;
+      left: 50%;
+      translate: -50% 0;
       min-height: 95vh;
       overflow: hidden;
       position: fixed;
       transition: 0.3s bottom;
       width: 100%;
       z-index: 10;
+      max-width: 480px;
+      margin: 0 auto;
     }
+  }
+
+  .app-btn {
+    margin: 0 24px 24px 0;
   }
 }

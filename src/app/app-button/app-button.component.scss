@@ -6,7 +6,8 @@
   border-radius: 12px;
   min-width: 46px;
   min-height: 46px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.3s background-color;
 
   &--is-rounded {
     border-radius: 50% !important;
@@ -24,5 +25,11 @@
   &--is-transparent {
     color: #000;
     background-color: transparent;
+  }
+
+  &--is-disabled {
+    background-color: lightgray !important;
+    cursor: not-allowed;
+    color: #fff;
   }
 }

@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnChanges } from '@angular/core';
 
-type TaskFormData = {
+export type TaskFormData = {
   name: string;
   time: string;
   today: boolean;
@@ -15,19 +15,32 @@ export class AddTaskFormComponent {
   public name = '';
   public time = '';
   public today = false;
+  public enableSubmit = false;
 
   @Output()
-  submit: EventEmitter<TaskFormData> = new EventEmitter();
+  onsubmit: EventEmitter<TaskFormData> = new EventEmitter();
 
-  handleSubmit() {
+  public handleSubmit() {
     const task = {
       name: this.name,
       time: this.time,
       today: this.today,
     };
 
-    console.log(task)
+    if (Object.values(task).some((v) => !v && typeof v !== 'boolean')) return;
 
-    this.submit.emit(task)
+    this.onsubmit.emit(task);
+    this.name = '';
+    this.time = '';
+    this.today = false;
+  }
+
+  ngDoCheck() {
+    const data = {
+      name: this.name,
+      time: this.time,
+    };
+
+    this.enableSubmit = Object.values(data).every((v) => v);
   }
 }

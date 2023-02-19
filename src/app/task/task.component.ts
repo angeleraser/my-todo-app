@@ -18,6 +18,9 @@ export class TaskComponent implements OnInit {
   time?: string;
 
   @Input()
+  identifier?: string;
+
+  @Input()
   completed?: boolean;
 
   ngOnInit() {
@@ -25,17 +28,23 @@ export class TaskComponent implements OnInit {
   }
 
   @Output()
-  public onComplete: EventEmitter<boolean> = new EventEmitter();
+  public onUpdate: EventEmitter<{ completed: boolean; id: string }> =
+    new EventEmitter();
 
   toggleCompleted(value: boolean) {
     this._completed = value;
-    this.onComplete.emit(value);
+
+    this.onUpdate.emit({
+      completed: this._completed,
+      id: this.identifier as string,
+    });
   }
 
   @Output()
-  public onDelete: EventEmitter<boolean> = new EventEmitter();
+  public onDelete: EventEmitter<string> = new EventEmitter();
 
-  handleDelete() {
-    this.onDelete.emit();
+  handleDelete(identifier?: string) {
+    if (!identifier) return;
+    this.onDelete.emit(identifier);
   }
 }

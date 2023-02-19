@@ -1,12 +1,13 @@
 .app-root {
+  background-color: #fafafa;
   display: flex;
   flex-direction: column;
-  background-color: #fafafa;
-  min-width: 375px;
-  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  margin: 0 auto;
   max-width: 480px;
-  font-family: 'Montserrat', sans-serif;
-
+  min-height: 100vh;
+  min-width: 375px;
+  width: 100%;
 
   .app-section {
     height: 46vh;
@@ -19,6 +20,29 @@
       gap: 16px;
       height: 90%;
       overflow-y: auto;
+      border: 1px solid #e8e8e8;
+      border-radius: 20px;
+      padding: 24px;
     }
+
+    .empty-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: rgba($color: #000000, $alpha: 0.4);
+      text-align: center;
+      margin: auto;
+      line-height: 1.2;
+      max-width: 80%;
+
+      svg {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  @media screen and (max-height: 720px) {
+    padding-bottom: 100px;
   }
 }

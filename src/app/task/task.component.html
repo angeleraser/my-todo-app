@@ -16,13 +16,11 @@
   </div>
 
   <div class="task__content">
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    </p>
-    <span>12:42 PM</span>
+    <p>{{ name || "DEFAULT" }}</p>
+    <span>{{ time }}</span>
   </div>
 
-  <button (click)="handleDelete()" class="task__delete-btn">
+  <button (click)="handleDelete(identifier)" class="task__delete-btn">
     <span class="material-symbols-outlined"> delete </span>
   </button>
 </article>

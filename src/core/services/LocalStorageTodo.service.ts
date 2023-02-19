@@ -2,107 +2,160 @@ import { Todo } from '../domain/models/Todo';
 import { TodoService } from '../domain/services/Todo.service';
 
 class LocalStorageTodoService implements TodoService {
-	private COLLECTION_KEY: string;
-	private __collection: Array<Todo> = [];
+  private COLLECTION_KEY: string;
+  private __collection: Array<Todo> = [];
 
-	constructor() {
-		this.COLLECTION_KEY = 'TODO_COLLECTION';
-		this.initLocalStorage();
-	}
+  constructor() {
+    this.COLLECTION_KEY = 'TODO_COLLECTION';
+    this.initLocalStorage();
+  }
 
-	public async addTodo(params: { label: string }): Promise<Todo> {
-		const newTodo: Todo = {
-			id: String(Date.now()),
-			completed: false,
-			label: params.label,
-		};
+  public filterTodayTodos(todos: Todo[]): Todo[] {
+    return todos.filter((todo) => {
+      const today = new Date();
+      const todoDate = new Date(todo.date);
 
-		this.collection = [newTodo, ...this.collection];
+      today.setHours(0, 0, 0, 0);
+      todoDate.setHours(0, 0, 0, 0);
 
-		return newTodo;
-	}
+      return this.isEqualTodayDates(today, todoDate);
+    });
+  }
 
-	public async deleteTodo(params: { id: string }): Promise<Todo> {
-		const deletedItem = this.collection.find((item) => item.id === params.id);
-		this.collection = this.collection.filter((item) => item.id !== params.id);
-		return deletedItem as Todo;
-	}
+  public filterTomorrowTodos(todos: Todo[]): Todo[] {
+    return todos.filter((todo) => {
+      const today = new Date();
+      const todoDate = new Date(todo.date);
 
-	public async updateTodo(params: {
-		completed: boolean;
-		id: string;
-	}): Promise<Todo> {
-		const collection = this.collection;
+      today.setHours(0, 0, 0, 0);
+      todoDate.setHours(0, 0, 0, 0);
 
-		let selectedTodo: Todo | null = null;
+      return todoDate > today;
+    });
+  }
 
-		this.collection = collection.map((item) => {
-			if (item.id === params.id) {
-				selectedTodo = {
-					...item,
-					completed: params.completed,
-				};
+  public async addTodo(params: {
+    name: string;
+    time: string;
+    isToday: boolean;
+  }): Promise<Todo> {
+    const newTodo: Todo = {
+      id: String(Date.now()),
+      completed: false,
+      name: params.name,
+      time: `${this.getTimeIn12Tz(params.time)} ${this.getAmOrPm(params.time)}`,
+      date: params.isToday
+        ? this.getTodayDate(params.time).toJSON()
+        : this.getTomorrowDate(params.time).toJSON(),
+    };
 
-				return selectedTodo;
-			}
+    this.collection = [newTodo, ...this.collection];
+    return newTodo;
+  }
 
-			return item;
-		});
+  public async deleteTodo(params: { id: string }): Promise<Todo> {
+    const deletedItem = this.collection.find((item) => item.id === params.id);
+    this.collection = this.collection.filter((item) => item.id !== params.id);
+    return deletedItem as Todo;
+  }
 
-		return selectedTodo as unknown as Todo;
-	}
+  public async updateTodo(params: {
+    completed: boolean;
+    id: string;
+  }): Promise<Todo> {
+    const collection = this.collection;
 
-	public async getAll(): Promise<Todo[]> {
-		return this.__collection;
-	}
+    let selectedTodo: Todo | null = null;
 
-	public async getAllCompleted(): Promise<Todo[]> {
-		return this.__collection.filter((item) => item.completed);
-	}
+    this.collection = collection.map((item) => {
+      if (item.id === params.id) {
+        selectedTodo = {
+          ...item,
+          completed: params.completed,
+        };
 
-	public async getAllActive(): Promise<Todo[]> {
-		return this.__collection.filter((item) => !item.completed);
-	}
+        return selectedTodo;
+      }
 
-	public async deleteAllCompleted(): Promise<void> {
-		const activeTodos = await this.getAllActive();
-		this.collection = [...activeTodos];
-	}
+      return item;
+    });
 
-	private initLocalStorage() {
-		const collection = JSON.parse(
-			localStorage.getItem(this.COLLECTION_KEY) || 'null',
-		) as Array<Todo> | null;
+    return selectedTodo as unknown as Todo;
+  }
 
-		if (collection === null) {
-			return localStorage.setItem(this.COLLECTION_KEY, JSON.stringify([]));
-		}
+  public async getAll(): Promise<Todo[]> {
+    return this.__collection;
+  }
 
-		this.collection = collection;
-	}
+  private initLocalStorage() {
+    const collection = JSON.parse(
+      localStorage.getItem(this.COLLECTION_KEY) || 'null'
+    ) as Array<Todo> | null;
 
-	private set collection(value: Todo[]) {
-		this.__collection = value;
+    if (collection === null) {
+      return localStorage.setItem(this.COLLECTION_KEY, JSON.stringify([]));
+    }
 
-		localStorage.setItem(
-			this.COLLECTION_KEY,
-			JSON.stringify(this.__collection),
-		);
-	}
+    this.collection = collection;
+  }
 
-	private get collection() {
-		const collection = JSON.parse(
-			localStorage.getItem(this.COLLECTION_KEY) as string,
-		) as null | Todo[];
+  private set collection(value: Todo[]) {
+    this.__collection = value;
 
-		if (!collection) return [];
+    localStorage.setItem(
+      this.COLLECTION_KEY,
+      JSON.stringify(this.__collection)
+    );
+  }
 
-		return collection;
-	}
+  private get collection() {
+    const collection = JSON.parse(
+      localStorage.getItem(this.COLLECTION_KEY) as string
+    ) as null | Todo[];
 
-	public static sortByActive(todos: Array<Todo>) {
-		return [...todos].sort((a, b) => Number(a.completed) - Number(b.completed));
-	}
+    if (!collection) return [];
+
+    return collection;
+  }
+
+  private getTodayDate(time: string) {
+    const [h, m] = time.split(':');
+
+    const date = new Date();
+    date.setHours(Number(h));
+    date.setMinutes(Number(m));
+
+    return date;
+  }
+
+  private getTomorrowDate(time: string) {
+    const date = this.getTodayDate(time);
+    date.setDate(date.getDate() + 1);
+    return date;
+  }
+
+  private isEqualTodayDates(date: Date, dateToCompare: Date) {
+    const [m1, d1] = [date.getMonth(), date.getDate()];
+    const [m2, d2] = [dateToCompare.getMonth(), dateToCompare.getDate()];
+
+    return m1 === m2 && d1 === d2;
+  }
+
+  private getAmOrPm(time: string) {
+    const [h] = time.split(':');
+    if (Number(h) < 12) return 'AM';
+    return 'PM';
+  }
+
+  private getTimeIn12Tz(time: string) {
+    const [hr, mnt] = time.split(':');
+    let h = Number(hr);
+
+    if (h >= 12) h -= 12;
+    if (h === 0) h = 12;
+
+    return `${h}:${mnt}`;
+  }
 }
 
 export { LocalStorageTodoService };
