@@ -77,7 +77,7 @@
       bottom: -150%;
       left: 50%;
       translate: -50% 0;
-      min-height: 95vh;
+      min-height: calc(95vh - 80px);
       overflow: hidden;
       position: fixed;
       transition: 0.3s bottom;
