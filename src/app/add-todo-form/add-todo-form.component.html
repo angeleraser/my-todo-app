@@ -12,10 +12,15 @@
 
     <label class="add-todo-form__field" for="today">
       <h2>Today</h2>
-      <app-switch [value]="today" (onchange)="today = $event"></app-switch>
+      <app-switch [value]="today" (onChange)="today = $event"></app-switch>
     </label>
 
-    <app-button [disabled]="!enableSubmit" [type]="'submit'" [full-width]="true" [color]="'black'">
+    <app-button
+      [disabled]="!enableSubmit"
+      [type]="'submit'"
+      [fullWidth]="true"
+      [color]="'black'"
+    >
       Done
     </app-button>
 

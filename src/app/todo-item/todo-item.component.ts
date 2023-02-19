@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-todo',
+  selector: 'app-todo-item',
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.scss'],
 })
@@ -23,7 +23,7 @@ export class TodoItemComponent implements OnInit {
   @Input()
   completed?: boolean;
 
-  ngOnInit() {
+  public ngOnInit() {
     this._completed = this.completed;
   }
 
@@ -31,7 +31,7 @@ export class TodoItemComponent implements OnInit {
   public onUpdate: EventEmitter<{ completed: boolean; id: string }> =
     new EventEmitter();
 
-  toggleCompleted(value: boolean) {
+  public toggleCompleted(value: boolean) {
     this._completed = value;
 
     this.onUpdate.emit({
@@ -43,7 +43,7 @@ export class TodoItemComponent implements OnInit {
   @Output()
   public onDelete: EventEmitter<string> = new EventEmitter();
 
-  handleDelete(identifier?: string) {
+  public handleDelete(identifier?: string) {
     const confirmDelete = confirm('Are you sure you want to delete this task?');
 
     if (!identifier || !confirmDelete) return;

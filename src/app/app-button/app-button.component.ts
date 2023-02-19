@@ -3,7 +3,6 @@ import {
   EventEmitter,
   Input,
   Output,
-  OnChanges,
 } from '@angular/core';
 
 @Component({
@@ -22,7 +21,7 @@ export class AppButtonComponent {
   public color?: 'transparent' | 'black';
 
   @Input()
-  public 'full-width'?: boolean;
+  public fullWidth?: boolean;
 
   @Input()
   public rounded?: boolean;
@@ -31,12 +30,12 @@ export class AppButtonComponent {
   public disabled?: boolean;
 
   @Output()
-  public 'onclick' = new EventEmitter();
+  public onClick = new EventEmitter();
 
   public classNames() {
     const classes = {
       [`app-button--is-${this.color}`]: !!this.color,
-      'app-button--is-full-width': this['full-width'],
+      'app-button--is-full-width': this.fullWidth,
       'app-button--is-rounded': this.rounded,
       'app-button--is-disabled': this.disabled,
     };

@@ -11,19 +11,19 @@ export class AppSwitchComponent implements OnInit, OnChanges {
   @Input()
   public value?: boolean;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.enabled = this.value;
   }
 
-  ngOnChanges() {
+  public ngOnChanges() {
     this.enabled = this.value;
   }
 
   @Output()
-  onchange: EventEmitter<boolean> = new EventEmitter();
+  onChange: EventEmitter<boolean> = new EventEmitter();
 
-  handleToggle() {
+  public handleToggle() {
     this.enabled = !this.enabled;
-    this.onchange.emit(this.enabled);
+    this.onChange.emit(this.enabled);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Todo } from 'src/core/domain/models/Todo';
+import { TodoFormData } from './add-todo-form/add-todo-form.component';
 import { TodoService } from './todo.service';
 
 @Component({
@@ -12,27 +13,35 @@ export class AppComponent implements OnInit {
   public today: Todo[] = [];
   public tomorrow: Todo[] = [];
 
-  constructor(private taskService: TodoService) {}
+  constructor(private todoService: TodoService) {}
 
-  async ngOnInit() {
-    const data = await this.taskService.getAllTodos();
+  public async ngOnInit() {
+    const data = await this.todoService.getAllTodos();
     this.today = data.today;
     this.tomorrow = data.tomorrow;
 
-    this.taskService.getTomorrowTodos.subscribe((todos) => {
+    this.todoService.getTomorrowTodos.subscribe((todos) => {
       this.tomorrow = todos;
     });
 
-    this.taskService.getTodayTodos.subscribe((todos) => {
+    this.todoService.getTodayTodos.subscribe((todos) => {
       this.today = todos;
     });
   }
 
   public handleUpdateTask(payload: { id: string; completed: boolean }) {
-    this.taskService.updateTodo(payload);
+    this.todoService.updateTodo(payload);
   }
 
-  public handleDeleteTask(payload: { id: string; }) {
-    this.taskService.deleteTodo(payload);
+  public handleDeleteTask(payload: { id: string }) {
+    this.todoService.deleteTodo(payload);
+  }
+
+  public handleAddTodo(payload: TodoFormData) {
+    this.todoService.addTodo({
+      name: payload.name,
+      time: payload.time,
+      isToday: payload.today,
+    });
   }
 }

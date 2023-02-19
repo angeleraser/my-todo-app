@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TodoFormData } from '../add-todo-form/add-todo-form.component';
-import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-add-todo',
@@ -9,19 +8,21 @@ import { TodoService } from '../todo.service';
 })
 export class AddTodoComponent {
   public showModal: boolean = false;
-  constructor(private taskService: TodoService) {}
+
+  @Output()
+  onSubmit: EventEmitter<TodoFormData> = new EventEmitter();
 
   handleToggleModal() {
     this.showModal = !this.showModal;
   }
 
   handleSubmit(payload: TodoFormData) {
-    this.taskService.addTodo({
+    this.onSubmit.emit({
       name: payload.name,
       time: payload.time,
-      isToday: payload.today,
+      today: payload.today,
     });
 
-    this.handleToggleModal()
+    this.handleToggleModal();
   }
 }

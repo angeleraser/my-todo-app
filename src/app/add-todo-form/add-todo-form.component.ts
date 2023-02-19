@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 export type TodoFormData = {
   name: string;
@@ -18,24 +18,21 @@ export class AddTodoFormComponent {
   public enableSubmit = false;
 
   @Output()
-  onsubmit: EventEmitter<TodoFormData> = new EventEmitter();
+  onSubmit: EventEmitter<TodoFormData> = new EventEmitter();
 
   public handleSubmit() {
-    const task = {
+    this.onSubmit.emit({
       name: this.name,
       time: this.time,
       today: this.today,
-    };
+    });
 
-    if (Object.values(task).some((v) => !v && typeof v !== 'boolean')) return;
-
-    this.onsubmit.emit(task);
     this.name = '';
     this.time = '';
     this.today = false;
   }
 
-  ngDoCheck() {
+  public ngDoCheck() {
     const data = {
       name: this.name,
       time: this.time,

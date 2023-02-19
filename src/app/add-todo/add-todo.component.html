@@ -1,7 +1,7 @@
 <div [ngClass]="{ 'add-todo--active': showModal }" class="add-todo">
   <div class="app-btn">
     <app-button
-      (onclick)="handleToggleModal()"
+      (onClick)="handleToggleModal()"
       [color]="'black'"
       [rounded]="true"
     >
@@ -22,7 +22,7 @@
         <h2>Task</h2>
       </div>
 
-      <app-add-todo-form (onsubmit)="handleSubmit($event)"></app-add-todo-form>
+      <app-add-todo-form (onSubmit)="handleSubmit($event)"></app-add-todo-form>
     </div>
   </div>
 </div>
