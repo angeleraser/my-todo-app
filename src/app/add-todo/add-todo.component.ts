@@ -14,7 +14,7 @@ export class AddTodoComponent {
 
   handleToggleModal() {
     this.showModal = !this.showModal;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = this.showModal ? 'hidden' : 'auto';
   }
 
   handleSubmit(payload: TodoFormData) {
