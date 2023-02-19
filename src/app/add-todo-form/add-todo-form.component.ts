@@ -16,6 +16,7 @@ export class AddTodoFormComponent {
   public time = '';
   public today = false;
   public enableSubmit = false;
+  public minHour?: string;
 
   @Output()
   onSubmit: EventEmitter<TodoFormData> = new EventEmitter();
@@ -39,5 +40,14 @@ export class AddTodoFormComponent {
     };
 
     this.enableSubmit = Object.values(data).every((v) => v);
+
+    if (this.today) {
+      const today = new Date();
+      this.minHour = `${
+        today.getHours() < 12 ? '0' : ''
+      }${today.getHours()}:${today.getMinutes()}`;
+    } else {
+      this.minHour = '';
+    }
   }
 }

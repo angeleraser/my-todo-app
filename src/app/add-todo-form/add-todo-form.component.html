@@ -7,7 +7,7 @@
 
     <label class="add-todo-form__field" for="hour">
       <h2>Hour</h2>
-      <input type="time" required name="hour" [(ngModel)]="time" />
+      <input type="time" name="hour" [(ngModel)]="time" [min]="minHour" />
     </label>
 
     <label class="add-todo-form__field" for="today">
