@@ -1,4 +1,4 @@
-import { Injectable, OnInit, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Todo } from 'src/core/domain/models/Todo';
 import { LocalStorageTodoService } from 'src/core/services/LocalStorageTodo.service';
 
@@ -7,10 +7,10 @@ const service = new LocalStorageTodoService();
 @Injectable({
   providedIn: 'root',
 })
-export class TaskService {
+export class TodoService {
   constructor() {}
 
-  public async getAllTasks() {
+  public async getAllTodos() {
     const todos = await service.getAll();
     const [today, tomorrow] = [
       service.filterTodayTodos(todos),
@@ -20,8 +20,8 @@ export class TaskService {
     return { today, tomorrow };
   }
 
-  @Output() getTodayTasks: EventEmitter<Todo[]> = new EventEmitter();
-  @Output() getTomorrowTasks: EventEmitter<Todo[]> = new EventEmitter();
+  @Output() getTodayTodos: EventEmitter<Todo[]> = new EventEmitter();
+  @Output() getTomorrowTodos: EventEmitter<Todo[]> = new EventEmitter();
 
   public async addTodo(params: {
     name: string;
@@ -29,23 +29,23 @@ export class TaskService {
     isToday: boolean;
   }) {
     await service.addTodo(params);
-    this.handleGetAllTasks();
+    this.handleGetAllTodos();
   }
 
   public async updateTodo(params: { id: string; completed: boolean }) {
     await service.updateTodo(params);
-    this.handleGetAllTasks();
+    this.handleGetAllTodos();
   }
 
   public async deleteTodo(params: { id: string }) {
     await service.deleteTodo({ id: params.id });
-    this.handleGetAllTasks();
+    this.handleGetAllTodos();
   }
 
-  public async handleGetAllTasks() {
+  private async handleGetAllTodos() {
     const todos = await service.getAll();
 
-    this.getTodayTasks.emit(service.filterTodayTodos(todos));
-    this.getTomorrowTasks.emit(service.filterTomorrowTodos(todos));
+    this.getTodayTodos.emit(service.filterTodayTodos(todos));
+    this.getTomorrowTodos.emit(service.filterTomorrowTodos(todos));
   }
 }

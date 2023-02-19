@@ -4,27 +4,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppButtonComponent } from './app-button/app-button.component';
 import { AppSwitchComponent } from './app-switch/app-switch.component';
-import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
+import { AddTodoFormComponent } from './add-todo-form/add-todo-form.component';
 import { SectionComponent } from './section/section.component';
 import { FormsModule } from '@angular/forms';
-import { AddTaskComponent } from './add-task/add-task.component';
-import { TaskComponent } from './task/task.component';
+import { AddTodoComponent } from './add-todo/add-todo.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppButtonComponent,
     AppSwitchComponent,
-    AddTaskFormComponent,
+    AddTodoFormComponent,
     SectionComponent,
-    AddTaskComponent,
-    TaskComponent,
+    AddTodoComponent,
+    TodoItemComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

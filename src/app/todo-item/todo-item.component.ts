@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss'],
+  selector: 'app-todo',
+  templateUrl: './todo-item.component.html',
+  styleUrls: ['./todo-item.component.scss'],
 })
-export class TaskComponent implements OnInit {
+export class TodoItemComponent implements OnInit {
   public _completed?: boolean;
 
   @Input()

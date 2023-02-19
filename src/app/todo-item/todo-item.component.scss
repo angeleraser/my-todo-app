@@ -1,19 +1,19 @@
 @use "../../assets/scss/colors" as colors;
 
-.task {
+.todo-item {
   display: flex;
   align-items: center;
   gap: 12px;
   width: 100%;
 
   &--completed {
-    .task__content {
+    .todo-item__content {
       text-decoration: line-through;
     }
   }
 
   &__action {
-    .task-list-bullet {
+    .todo-item-list-bullet {
       display: inline-block;
       border-radius: 50%;
       width: 10px;

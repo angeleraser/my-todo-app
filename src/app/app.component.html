@@ -1,6 +1,6 @@
 <div class="app-root">
   <app-section [sectionTitle]="'Today'" [customContentClass]="'task-list'">
-    <app-task
+    <app-todo
       [identifier]="item.id"
       [name]="item.name"
       [time]="item.time"
@@ -9,7 +9,7 @@
       (onUpdate)="handleUpdateTask($event)"
       (onDelete)="handleDeleteTask({ id: $event })"
     >
-    </app-task>
+    </app-todo>
 
     <p class="empty-message" *ngIf="today.length === 0">
       You don't have pending tasks, go ahead and set up your today's journey.
@@ -44,7 +44,7 @@
   </app-section>
 
   <app-section [sectionTitle]="'Tomorrow'" [customContentClass]="'task-list'">
-    <app-task
+    <app-todo
       [identifier]="item.id"
       [name]="item.name"
       [readonly]="true"
@@ -52,7 +52,7 @@
       *ngFor="let item of tomorrow; index as i"
       (onDelete)="handleDeleteTask({ id: $event })"
     >
-    </app-task>
+    </app-todo>
 
     <p class="empty-message" *ngIf="tomorrow.length === 0">
       You don't have pending tasks for tomorrow.
@@ -89,5 +89,5 @@
       </svg>
     </p>
   </app-section>
-  <app-add-task></app-add-task>
+  <app-add-todo></app-add-todo>
 </div>

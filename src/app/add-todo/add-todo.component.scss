@@ -1,6 +1,6 @@
 @use "../../assets/scss/colors" as colors;
 
-.add-task {
+.add-todo {
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -24,14 +24,14 @@
   }
 
   &--active {
-    .add-task__container {
+    .add-todo__container {
       bottom: 0;
 
-      .add-task-overlay {
+      .add-todo-overlay {
         display: inline-block;
       }
 
-      .add-task-content {
+      .add-todo-content {
         bottom: 0;
       }
     }
@@ -60,7 +60,7 @@
     display: flex;
     align-items: end;
 
-    .add-task-overlay {
+    .add-todo-overlay {
       background-color: rgba($color: colors.$black-1, $alpha: 0.25);
       display: none;
       left: 0;
@@ -70,7 +70,7 @@
       z-index: 5;
     }
 
-    .add-task-content {
+    .add-todo-content {
       background-color: colors.$background;
       border-radius: 20px 20px 0 0;
       bottom: -100%;

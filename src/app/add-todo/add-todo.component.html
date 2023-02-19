@@ -1,4 +1,4 @@
-<div [ngClass]="{ 'add-task--active': showModal }" class="add-task">
+<div [ngClass]="{ 'add-todo--active': showModal }" class="add-todo">
   <div class="app-btn">
     <app-button
       (onclick)="handleToggleModal()"
@@ -9,11 +9,11 @@
     </app-button>
   </div>
 
-  <div class="add-task__container">
-    <div (click)="handleToggleModal()" class="add-task-overlay"></div>
+  <div class="add-todo__container">
+    <div (click)="handleToggleModal()" class="add-todo-overlay"></div>
 
-    <div class="add-task-content">
-      <div class="add-task__header">
+    <div class="add-todo-content">
+      <div class="add-todo__header">
         <button (click)="handleToggleModal()">
           <span class="material-symbols-outlined"> arrow_back </span>
           Close
@@ -22,7 +22,7 @@
         <h2>Task</h2>
       </div>
 
-      <app-add-task-form (onsubmit)="handleSubmit($event)"></app-add-task-form>
+      <app-add-todo-form (onsubmit)="handleSubmit($event)"></app-add-todo-form>
     </div>
   </div>
 </div>

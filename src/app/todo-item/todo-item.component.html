@@ -1,5 +1,5 @@
-<article [ngClass]="{ 'task--completed': _completed }" class="task">
-  <div class="task__action">
+<article [ngClass]="{ 'todo-item--completed': _completed }" class="todo-item">
+  <div class="todo-item__action">
     <label *ngIf="!readonly; else showBullet" class="custom-checkbox">
       <input
         type="checkbox"
@@ -11,16 +11,16 @@
     </label>
 
     <ng-template #showBullet>
-      <span class="task-list-bullet"></span>
+      <span class="todo-item-list-bullet"></span>
     </ng-template>
   </div>
 
-  <div class="task__content">
+  <div class="todo-item__content">
     <p>{{ name || "DEFAULT" }}</p>
     <span>{{ time }}</span>
   </div>
 
-  <button (click)="handleDelete(identifier)" class="task__delete-btn">
+  <button (click)="handleDelete(identifier)" class="todo-item__delete-btn">
     <span class="material-symbols-outlined"> delete </span>
   </button>
 </article>

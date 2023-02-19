@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Todo } from 'src/core/domain/models/Todo';
-import { TaskService } from './task.service';
+import { TodoService } from './todo.service';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +12,18 @@ export class AppComponent implements OnInit {
   public today: Todo[] = [];
   public tomorrow: Todo[] = [];
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TodoService) {}
 
   async ngOnInit() {
-    const data = await this.taskService.getAllTasks();
+    const data = await this.taskService.getAllTodos();
     this.today = data.today;
     this.tomorrow = data.tomorrow;
 
-    this.taskService.getTomorrowTasks.subscribe((todos) => {
+    this.taskService.getTomorrowTodos.subscribe((todos) => {
       this.tomorrow = todos;
     });
 
-    this.taskService.getTodayTasks.subscribe((todos) => {
+    this.taskService.getTodayTodos.subscribe((todos) => {
       this.today = todos;
     });
   }

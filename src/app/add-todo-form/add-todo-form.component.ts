@@ -1,24 +1,24 @@
 import { Component, EventEmitter, Output, OnChanges } from '@angular/core';
 
-export type TaskFormData = {
+export type TodoFormData = {
   name: string;
   time: string;
   today: boolean;
 };
 
 @Component({
-  selector: 'app-add-task-form',
-  templateUrl: './add-task-form.component.html',
-  styleUrls: ['./add-task-form.component.scss'],
+  selector: 'app-add-todo-form',
+  templateUrl: './add-todo-form.component.html',
+  styleUrls: ['./add-todo-form.component.scss'],
 })
-export class AddTaskFormComponent {
+export class AddTodoFormComponent {
   public name = '';
   public time = '';
   public today = false;
   public enableSubmit = false;
 
   @Output()
-  onsubmit: EventEmitter<TaskFormData> = new EventEmitter();
+  onsubmit: EventEmitter<TodoFormData> = new EventEmitter();
 
   public handleSubmit() {
     const task = {
