@@ -1,3 +1,5 @@
+@use "../../assets/scss/colors" as colors;
+
 .app-section {
   padding: 24px;
   width: 100%;
@@ -6,5 +8,6 @@
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 24px;
+    color: colors.$black-1;
   }
 }

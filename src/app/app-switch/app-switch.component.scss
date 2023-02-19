@@ -1,3 +1,5 @@
+@use "../../assets/scss/colors" as colors;
+
 .app-switch {
   width: 52px;
   height: 32px;
@@ -10,28 +12,28 @@
 
   &__toggle {
     transition: 0.3s all;
-    background-color: #fff;
+    background-color: colors.$white;
     border-radius: 50%;
     display: inline-block;
-    height: calc(100% - 4.5px);
+    height: calc(100% - 5px);
     position: absolute;
     top: 2.5px;
-    width: calc(58% - 2.5px);
+    width: calc(58% - 3.5px);
   }
 
   &--enabled {
-    background-color: #34c759;
+    background-color: colors.$green;
 
     .app-switch__toggle {
-      left: calc(45% - 2.5px);
+      left: calc(45% - 1.5px);
     }
   }
 
   &--disabled {
-    background-color: lightgray;
+    background-color: colors.$lightgray;
 
     .app-switch__toggle {
-      left: 2.5px;
+      left: 4px;
     }
   }
 }

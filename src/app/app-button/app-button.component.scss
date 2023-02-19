@@ -1,3 +1,5 @@
+@use "../../assets/scss/colors" as colors;
+
 .app-button {
   background-color: transparent;
   border: none;
@@ -18,18 +20,18 @@
   }
 
   &--is-black {
-    background-color: #000;
-    color: #fff;
+    background-color: colors.$black-1;
+    color: colors.$white;
   }
 
   &--is-transparent {
-    color: #000;
+    color: colors.$black-1;
     background-color: transparent;
   }
 
   &--is-disabled {
-    background-color: lightgray !important;
+    background-color: colors.$lightgray !important;
     cursor: not-allowed;
-    color: #fff;
+    color: colors.$white;
   }
 }

@@ -44,7 +44,10 @@ export class TaskComponent implements OnInit {
   public onDelete: EventEmitter<string> = new EventEmitter();
 
   handleDelete(identifier?: string) {
-    if (!identifier) return;
+    const confirmDelete = confirm('Are you sure you want to delete this task?');
+
+    if (!identifier || !confirmDelete) return;
+    
     this.onDelete.emit(identifier);
   }
 }

@@ -1,13 +1,14 @@
+@use "../../assets/scss/colors" as colors;
+
 .add-task {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   position: fixed;
   bottom: 0;
-  background-color: #fafafa;
+  background-color: colors.$background;
   max-width: 480px;
   margin: 0 auto;
-
 
   button {
     display: flex;
@@ -16,7 +17,7 @@
     align-items: center;
     border: none;
     outline: none;
-    color: #007aff;
+    color: colors.$blue;
     background-color: transparent;
     font-size: 18px;
     font-weight: 500;
@@ -40,9 +41,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    background-color: #f9f9f9;
+    background-color: colors.$header;
     padding: 18px 12px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid colors.$lightgray;
 
     h2 {
       justify-self: center;
@@ -60,7 +61,7 @@
     align-items: end;
 
     .add-task-overlay {
-      background-color: rgba($color: #000, $alpha: 0.25);
+      background-color: rgba($color: colors.$black-1, $alpha: 0.25);
       display: none;
       left: 0;
       min-height: 100vh;
@@ -70,7 +71,7 @@
     }
 
     .add-task-content {
-      background-color: #fafafa;
+      background-color: colors.$background;
       border-radius: 20px 20px 0 0;
       bottom: -100%;
       left: 50%;
