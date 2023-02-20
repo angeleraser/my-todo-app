@@ -22,6 +22,8 @@ export class AddTodoFormComponent {
   onSubmit: EventEmitter<TodoFormData> = new EventEmitter();
 
   public handleSubmit() {
+    if (!this.enableSubmit) return;
+    
     this.onSubmit.emit({
       name: this.name,
       time: this.time,
