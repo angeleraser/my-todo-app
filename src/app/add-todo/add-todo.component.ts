@@ -10,14 +10,14 @@ export class AddTodoComponent {
   public showModal: boolean = false;
 
   @Output()
-  onSubmit: EventEmitter<TodoFormData> = new EventEmitter();
+  public onSubmit: EventEmitter<TodoFormData> = new EventEmitter();
 
-  handleToggleModal() {
+  public handleToggleModal() {
     this.showModal = !this.showModal;
     document.body.style.overflow = this.showModal ? 'hidden' : 'auto';
   }
 
-  handleSubmit(payload: TodoFormData) {
+  public handleSubmit(payload: TodoFormData) {
     this.onSubmit.emit({
       name: payload.name,
       time: payload.time,
