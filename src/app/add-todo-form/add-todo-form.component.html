@@ -15,7 +15,7 @@
         <input type="time" name="hour" [(ngModel)]="time" [min]="minHour" />
 
         <span *ngIf="showHourErrorMsg" class="add-todo-form__error-message">
-          Hour must be equal or greather than {{ getFormatedTime(minHour) }}
+          <strong>Hour</strong> must be equal or greather than {{ getFormatedTime(minHour) }}
         </span>
       </div>
     </label>
