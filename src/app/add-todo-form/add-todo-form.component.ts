@@ -31,7 +31,7 @@ export class AddTodoFormComponent {
       today: this.today,
     });
 
-    this.resetFormData()
+    this.resetFormData();
   }
 
   public handleSetMinHour() {
@@ -90,10 +90,13 @@ export class AddTodoFormComponent {
     const [minHours, minMinutes] = this.minHour.split(':');
     const [selectedHours, selectedMinutes] = this.time.split(':');
 
-    return (
-      Number(selectedHours) >= Number(minHours) &&
-      Number(selectedMinutes) >= Number(minMinutes)
-    );
+    const todayDate = new Date();
+    const minDate = new Date();
+
+    todayDate.setHours(Number(selectedHours), Number(selectedMinutes), 0, 0);
+    minDate.setHours(Number(minHours), Number(minMinutes), 0, 0);
+
+    return todayDate >= minDate;
   }
 
   private resetFormData() {

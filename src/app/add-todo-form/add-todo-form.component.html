@@ -5,7 +5,11 @@
       <input type="text" name="name" id="name" [(ngModel)]="name" />
     </label>
 
-    <label class="add-todo-form__field" for="hour">
+    <label
+      [ngClass]="{ 'add-todo-form__field--error': showHourErrorMsg }"
+      class="add-todo-form__field"
+      for="hour"
+    >
       <h2>Hour</h2>
       <div>
         <input type="time" name="hour" [(ngModel)]="time" [min]="minHour" />
